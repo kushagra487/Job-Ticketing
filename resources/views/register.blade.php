@@ -20,29 +20,34 @@
                                 <div class="card shadow-lg border-0 rounded-lg mt-5">
                                     <div class="card-header"><h3 class="text-center font-weight-light my-4">Create Account</h3></div>
                                     <div class="card-body">
-                                        <form method="POST">
+                                    @if($errors->any())
+    <div class="alert alert-danger">
+        <p>{{ $errors->first() }}</p>
+    </div>
+@endif
+                                        <form method="POST" action="{{ route('register_data') }}">
                                             @csrf
                                             <div class="row mb-3">
                                                 <div class="col-md-6">
                                                     <div class="form-floating mb-3 mb-md-0">
-                                                        <input class="form-control" id="inputFirstName" type="text" placeholder="Enter your first name" name="first_name" />
-                                                        <label for="inputFirstName">First name</label>
+                                                        <input class="form-control" id="inputFirstName" type="text" placeholder="Enter your first name" name="first_name"/>
+                                                        <label for="inputFirstName">First name <span class="text-danger">*</span></label>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-6">
                                                     <div class="form-floating">
-                                                        <input class="form-control" id="inputLastName" type="text" placeholder="Enter your last name" name="last_name" />
+                                                        <input class="form-control" id="inputLastName" type="text" placeholder="Enter your last name" name="last_name"/>
                                                         <label for="inputLastName">Last name</label>
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="form-floating mb-3">
                                                 <input class="form-control" id="inputEmail" type="email" placeholder="name@example.com" name="email" />
-                                                <label for="inputEmail">Email address</label>
+                                                <label for="inputEmail">Email address<span class="text-danger">*</span></label>
                                             </div>
                                             <div class="form-group mb-3"> 
-                                               <select name="user_role"  id="userType" class="form-control">
-                                                    <option value="0">Select user type</option>
+                                               <select name="user_role"  id="userType" class="form-control" >
+                                                    <option value="">Select user type</option>
                                                      <option value="1">Client</option>
                                                      <option value="2">Developer</option>
                                             </select>
@@ -51,14 +56,14 @@
                                             <div class="row mb-3">
                                                 <div class="col-md-6">
                                                     <div class="form-floating mb-3 mb-md-0">
-                                                        <input class="form-control" id="inputPassword" type="password" placeholder="Create a password" name="password"/>
-                                                        <label for="inputPassword">Password</label>
+                                                        <input class="form-control" id="inputPassword" type="password" placeholder="Create a password" name="password" />
+                                                        <label for="inputPassword">Password<span class="text-danger">*</span></label>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-6">
                                                     <div class="form-floating mb-3 mb-md-0">
-                                                        <input class="form-control" id="inputPasswordConfirm" type="password" placeholder="Confirm password" name="confirm_password"/>
-                                                        <label for="inputPasswordConfirm">Confirm Password</label>
+                                                        <input class="form-control" id="inputPasswordConfirm" type="password" placeholder="Confirm password" name="confirm_password" />
+                                                        <label for="inputPasswordConfirm">Confirm Password<span class="text-danger">*</span></label>
                                                     </div>
                                                 </div>
                                             </div>
@@ -68,7 +73,7 @@
                                         </form>
                                     </div>
                                     <div class="card-footer text-center py-3">
-                                        <div class="small"><a href="login.html">Have an account? Go to login</a></div>
+                                        <div class="small"><a href="{{ URL('/') }}">Have an account? Go to login</a></div>
                                     </div>
                                 </div>
                             </div>

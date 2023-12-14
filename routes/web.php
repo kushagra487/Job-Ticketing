@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\JobTicketController;
+use App\Http\Controllers\AuthanticationController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -14,8 +14,12 @@ use App\Http\Controllers\JobTicketController;
 */
 
 
-Route::get('/', [JobTicketController::class, 'register']);
-Route::post('/', [JobTicketController::class, 'register_data']);
+Route::get('/', [AuthanticationController::class, 'login'])->name('login');
+Route::match(['get','post'],'/loginAuth', [AuthanticationController::class, 'loginAuth'])->name('loginAuth');
 
-Route::get('/login', [JobTicketController::class, 'login'])->name('login');
-Route::post('/login', [JobTicketController::class, 'register_data']);
+Route::get('/register', [AuthanticationController::class, 'register'])->name('register');
+Route::post('/register', [AuthanticationController::class, 'register_data'])->name('register_data');
+
+Route::post('/forgot_password', [AuthanticationController::class, 'forgot_password'])->name('forgot_password');
+
+Route::get('/dashboard', [AuthanticationController::class, 'dashboard']);
